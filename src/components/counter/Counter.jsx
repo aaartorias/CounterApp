@@ -10,19 +10,26 @@ class Counter extends Component {
             counter: 0
         }
         // bind method with class to make `this` available inside the method
-        this.increment = this.increment.bind(this); 
+        // this.increment = this.increment.bind(this); // we don't need to bind arrow functions
     }
 
-    render() {
+    render = () => {
         return(
         <div className="counter">
             <button onClick={this.increment} >+1</button>
             <span className="count">{this.state.counter}</span>
+            <span className="count">{this.state.secondCounter}</span>
         </div>
         )
     }
 
-    increment() {
+    increment = () => {
+
+        this.setState({
+            counter: this.state.counter + 1,
+        
+        });        
+        /*
         if (this.state.counter >= 10) {
             this.setState(
                 {
@@ -30,12 +37,12 @@ class Counter extends Component {
                 }
                 )
         } else {
-        this.setState(
-            {
-                counter : this.state.counter + 1
-            }
-        )
-    }
+            this.setState(
+                {
+                    counter : this.state.counter + 1
+                }
+            )
+        }*/
     }
 }
 
