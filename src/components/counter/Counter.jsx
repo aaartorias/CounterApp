@@ -14,10 +14,10 @@ class Counter extends Component {
     }
 
     render() {
+         // Call method of parent class from child class
         // pass 'method increment()' as a property to child class 
         // so that we can invoke increment() from ComponentButton(child class)
-        // Call method of parent class from child class
-        // It's moving the state up 
+        // {moving the state up} 
         return (
             <div className="App">
                 <CounterButton incrementMethod={this.increment} decrementMethod={this.decrement}/>
@@ -33,8 +33,6 @@ class Counter extends Component {
             </div>
       );
     }
-
-
 
     decrement = (by) => {
         this.setState(
@@ -65,18 +63,10 @@ class CounterButton extends Component {
     render = () => {
         return(
         <div className="counter">
-            <button onClick={this.increment} >+{this.props.by}</button>
-            <button onClick={this.decrement} >-{this.props.by}</button>
+            <button onClick={() => this.props.incrementMethod(this.props.by)} >+{this.props.by}</button>
+            <button onClick={() => this.props.decrementMethod(this.props.by)} >-{this.props.by}</button>
         </div>
         )
-    }
-
-    increment = () => {
-        this.props.incrementMethod(this.props.by);
-    }
-    
-    decrement = () => {
-        this.props.decrementMethod(this.props.by);
     }
 }
 
